@@ -17,6 +17,18 @@ and add the following line to your init file (make sure you have Projectile inst
 (require 'nameframe-projectile)
 #+END_SRC
 
+** Usage
+
+Once ~nameframe-projectile~ is required, it will override Projectile's
+=C-c p p= mapping to open projects in frames.
+
+To map to a different key instead, replace this line in ~nameframe-projectile.el~:
+
+#+BEGIN_SRC emacs-lisp
+(define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project)
+#+END_SRC
+
+
 ** Caveats
 
 - Only tested on GUI Emacs 24.5 (on OS X, but should work with other GUI versions)
