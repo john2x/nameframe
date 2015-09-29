@@ -1,0 +1,40 @@
+;;; nameframe --- Manage frames by name.
+
+;; Author: John Del Rosario <john2x@gmail.com>
+;; URL: https://github.com/john2x/nameframe
+;; Version: 0.1.0-alpha
+
+;;; Commentary:
+
+;; This package defines utility functions for managing frames by their names.
+
+;;; Code:
+
+(defun nameframe-frame-alist ()
+  "Return an alist of named frames."
+  (nameframe--build-frames-alist-from-frame-list (frame-list)))
+
+(defun nameframe-make-frame (frame-name)
+  "Make a new frame with name FRAME-NAME."
+  (make-frame `((name . ,frame-name))))
+
+(defun nameframe-frame-exists-p (frame-name &optional frame-alist)
+  "Check if a frame with FRAME-NAME exists.
+If FRAME-ALIST is non-nil, then it is used instead of calling
+`nameframe-frame-alist'."
+  (and (nameframe-get-frame frame-name frame-alist) t))
+
+(defun nameframe-get-frame (frame-name &optional frame-alist)
+  "Return the frame with FRAME-NAME if it exists, or nil.
+If FRAME-ALIST is non-nil, then it is used instead of calling
+`nameframe-frame-alist'."
+  (let ((frame-alist (or frame-alist (nameframe-frame-alist))))
+    (cdr (assoc frame-name frame-alist))))
+
+(defun nameframe--build-frames-alist-from-frame-list (frame-list)
+  "Return an alist of name-frame pairs from a FRAME-LIST (i.e. returned value of the `frame-list' function)."
+  (mapcar (lambda (f) `(,(cdr (assq 'name (frame-parameters f))) . ,f)) frame-list))
+
+(provide 'nameframe)
+
+;;; nameframe.el ends here

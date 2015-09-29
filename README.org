@@ -1,0 +1,22 @@
+* Nameframe
+
+Nameframe provides utility functions to manage frames by their names.
+
+It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]]. When opening a Projectile
+project, it will either switch to an existing frame of the project, or
+create a new frame for the project.
+
+** Installation
+
+*** Manual install
+
+** Caveats
+
+- Only tested on GUI Emacs 24.5 (on OS X, but should work with other GUI versions)
+- Does not work with Helm
+
+** Demo
+
+** License
+
+See ~LICENSE.txt~.
