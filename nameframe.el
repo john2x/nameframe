@@ -31,6 +31,18 @@ If FRAME-ALIST is non-nil, then it is used instead of calling
   (let ((frame-alist (or frame-alist (nameframe-frame-alist))))
     (cdr (assoc frame-name frame-alist))))
 
+;;;###autoload
+(defun nameframe-switch-frame (frame-name)
+  "Interactively switch to an existing frame with name FRAME-NAME."
+  (interactive
+   (list (completing-read "Switch to frame: " (mapcar 'car (nameframe-frame-alist)))))
+  ;; is it possible that `nameframe-frame-alist' would return a different value
+  ;; from the previous call done in the `interactive' form above?
+  (let* ((frame-alist (nameframe-frame-alist))
+         (frame (nameframe-get-frame frame-name frame-alist)))
+    (when frame
+      (select-frame-set-input-focus frame))))
+
 (defun nameframe--build-frames-alist-from-frame-list (frame-list)
   "Return an alist of name-frame pairs from a FRAME-LIST (i.e. returned value of the `frame-list' function)."
   (mapcar (lambda (f) `(,(cdr (assq 'name (frame-parameters f))) . ,f)) frame-list))

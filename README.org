@@ -10,14 +10,26 @@ create a new frame for the project.
 
 *** Manual install
 
-Copy ~nameframe.el~ and ~nameframe-projectile.el~ into your Emacs load path
-and add the following line to your init file (make sure you have Projectile installed):
+Copy ~nameframe.el~ into your Emacs load path.
+
+If you are using Projectile, then you will want to add ~nameframe-projectile.el~ into
+your Emacs load path as well and add the following line to your init file
+(make sure you have Projectile installed):
 
 #+BEGIN_SRC emacs-lisp
 (require 'nameframe-projectile)
 #+END_SRC
 
 ** Usage
+
+~nameframe-switch-frame~ - Interactive function to switch between existing frames by name.
+You may want to bind this to a key. e.g.
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-P") 'nameframe-switch-frame)
+#+END_SRC
+
+*** Projectile
 
 Once ~nameframe-projectile~ is required, it will override Projectile's
 =C-c p p= mapping to open projects in frames.
