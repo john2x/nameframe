@@ -3,13 +3,16 @@
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
 ;; Version: 0.1.0-alpha
-;; Package-Requires: ((projectile 0.13.0))
+;; Package-Requires: ((nameframe 0.1.0-alpha) (projectile 0.13.0))
 
 ;;; Commentary:
 
 ;; This package defines a function to replace Projectile's
 ;; `projectile-switch-project' which will create/switch to a named frame
 ;; of the target project.
+
+;; To use this library, put this file in your Emacs load path,
+;; and call (require 'nameframe-projectile).
 
 ;;; Credits:
 

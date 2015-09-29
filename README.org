@@ -10,12 +10,21 @@ create a new frame for the project.
 
 *** Manual install
 
+Copy ~nameframe.el~ and ~nameframe-projectile.el~ into your Emacs load path
+and add the following line to your init file (make sure you have Projectile installed):
+
+#+BEGIN_SRC emacs-lisp
+(require 'nameframe-projectile)
+#+END_SRC
+
 ** Caveats
 
 - Only tested on GUI Emacs 24.5 (on OS X, but should work with other GUI versions)
 - Does not work with Helm
 
-** Demo
+** Demo with Projectile
+
+[[https://raw.githubusercontent.com/john2x/nameframe/master/nameframe-demo.gif]]
 
 ** License
 
