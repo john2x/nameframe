@@ -38,6 +38,10 @@ To map to a different key instead, replace this line in ~nameframe-projectile.el
 
 [[https://raw.githubusercontent.com/john2x/nameframe/master/nameframe-demo.gif]]
 
+** TODO
+
+- UI to manage frames /without/ Projectile
+
 ** License
 
 See ~LICENSE.txt~.
