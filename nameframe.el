@@ -43,6 +43,21 @@ If FRAME-ALIST is non-nil, then it is used instead of calling
     (when frame
       (select-frame-set-input-focus frame))))
 
+;;;###autoload
+(defun nameframe-create-frame (frame-name)
+  "Interactively create a frame with name FRAME-NAME and switch to it."
+  (interactive "sCreate frame named: ")
+  (let* ((frame-alist (nameframe-frame-alist))
+         (frame (nameframe-get-frame frame-name frame-alist)))
+    (if (not frame)
+        (let ((frame (nameframe-make-frame frame-name))
+              (buffer-name "*scratch*"))
+          (if (not (get-buffer buffer-name))
+              (with-current-buffer (get-buffer-create buffer-name)
+                (funcall initial-major-mode))
+            (switch-to-buffer (get-buffer buffer-name))))
+      (select-frame-set-input-focus frame))))
+
 (defun nameframe--build-frames-alist-from-frame-list (frame-list)
   "Return an alist of name-frame pairs from a FRAME-LIST (i.e. returned value of the `frame-list' function)."
   (mapcar (lambda (f) `(,(cdr (assq 'name (frame-parameters f))) . ,f)) frame-list))
