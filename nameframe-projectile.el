@@ -3,7 +3,7 @@
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
 ;; Version: 0.1.0-alpha
-;; Package-Requires: ((nameframe 0.1.0-alpha) (projectile 0.13.0))
+;; Package-Requires: ((nameframe "0.1.0-alpha") (projectile "0.13.0"))
 
 ;;; Commentary:
 
@@ -44,8 +44,8 @@ unless we're already in that frame."
       (select-frame-set-input-focus frame))
      ;; project-specific frame doesn't exist
      ((not frame)
-      (let ((frame (nameframe-make-frame name)))
-        (projectile-switch-project-by-name project))))))
+      (progn (nameframe-make-frame name)
+             (projectile-switch-project-by-name project))))))
 
 (define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project)
 

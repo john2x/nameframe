@@ -12,13 +12,8 @@ create a new frame for the project.
 
 Copy ~nameframe.el~ into your Emacs load path.
 
-If you are using Projectile, then you will want to add ~nameframe-projectile.el~ into
-your Emacs load path as well and add the following line to your init file
-(make sure you have Projectile installed):
-
-#+BEGIN_SRC emacs-lisp
-(require 'nameframe-projectile)
-#+END_SRC
+Optionally, copy ~nameframe-projectile.el~ and ~nameframe-perspective.el~
+into your load path as well. See **Usage** section below for details.
 
 ** Usage
 
@@ -35,8 +30,15 @@ You may want to bind this to a key. e.g.
 
 *** Projectile
 
-Once ~nameframe-projectile~ is required, it will override Projectile's
-=C-c p p= mapping to open projects in frames.
+Nameframe provides Projectile integration to open projects in their
+own frames. To enable Projectile integration, add the following line to your
+init file:
+
+#+BEGIN_SRC emacs-lisp
+(require 'nameframe-projectile)
+#+END_SRC
+
+This will override Projectile's =C-c p p= mapping to open projects in frames.
 
 To map to a different key instead, replace this line in ~nameframe-projectile.el~:
 
@@ -44,6 +46,38 @@ To map to a different key instead, replace this line in ~nameframe-projectile.el
 (define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project)
 #+END_SRC
 
+*** Perspective
+
+Nameframe also provides ~perspective.el~ integration, so each frame has its own
+perspective (and thus have its own list of buffers).
+
+To enable perspective integration, add the following line to your init file:
+
+#+BEGIN_SRC emacs-lisp
+(require 'nameframe-perspective)
+#+END_SRC
+
+*** Recommended setup
+
+Although the Projectile and ~perspective.el~ integrations are optional, nameframe
+really shines when used in conjunction with both packages. Here is a snippet on how to
+use nameframe to its full potential:
+
+#+BEGIN_SRC emacs-lisp
+;; Assuming Projectile and perspective.el are already installed;
+;; And nameframe.el, nameframe-projectile.el, and nameframe-perspective.el
+;; are all in the load path
+
+(projectile-global-mode)
+(persp-mode)
+
+(require 'nameframe)
+(require 'nameframe-projectile)
+(require 'nameframe-perspective)
+
+(global-set-key (kbd "M-P") 'nameframe-switch-frame)
+
+#+END_SRC
 
 ** Caveats
 

@@ -7,6 +7,10 @@
 ;;; Commentary:
 
 ;; This package defines utility functions for managing frames by their names.
+;; It is meant to be used together with Projectile and perspective.el.
+;;
+;; To enable Projectile integration, add namespace-projectile.el to your
+;; load path.
 
 ;;; Code:
 
