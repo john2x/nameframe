@@ -22,12 +22,16 @@ your Emacs load path as well and add the following line to your init file
 
 ** Usage
 
-~nameframe-switch-frame~ - Interactive function to switch between existing frames by name.
+*** Vanilla
+
+- ~nameframe-switch-frame~ - Interactive function to switch between existing frames by name.
 You may want to bind this to a key. e.g.
 
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-P") 'nameframe-switch-frame)
 #+END_SRC
+
+- ~nameframe-create-frame~ - Interactive function to create a new frame.
 
 *** Projectile
 
