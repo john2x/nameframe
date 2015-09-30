@@ -44,7 +44,7 @@ To map to a different key instead, replace this line in ~nameframe-projectile.el
 ** Caveats
 
 - Only tested on GUI Emacs 24.5 (on OS X, but should work with other GUI versions)
-- Does not work with Helm
+- Does not work with Helm (I personally don't use Helm. Pull-requests welcome.)
 
 ** Demo with Projectile
 
