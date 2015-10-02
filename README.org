@@ -2,11 +2,19 @@
 
 Nameframe provides utility functions to manage frames by their names.
 
-It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]]. When opening a Projectile
+It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]] and/or perspective.el. When opening a Projectile
 project, it will either switch to an existing frame of the project, or
 create a new frame for the project.
 
 ** Installation
+
+*** MELPA
+
+Nameframe is available on MELPA as [[https://melpa.org/#/nameframe][~nameframe~]].
+
+#+BEGIN_SRC text
+M-x package-install RET nameframe RET
+#+END_SRC
 
 *** Manual install
 
@@ -35,6 +43,7 @@ own frames. To enable Projectile integration, add the following line to your
 init file:
 
 #+BEGIN_SRC emacs-lisp
+;; If using manual install, (require 'nameframe-projectile)
 (nameframe-projectile-init)
 #+END_SRC
 
@@ -48,6 +57,7 @@ perspective (and thus have its own list of buffers).
 To enable perspective integration, add the following line to your init file:
 
 #+BEGIN_SRC emacs-lisp
+;; If using manual install, (require 'nameframe-perspective)
 (nameframe-perspective-init)
 #+END_SRC
 
@@ -58,12 +68,15 @@ really shines when used in conjunction with both packages. Here is a snippet on 
 use nameframe to its full potential:
 
 #+BEGIN_SRC emacs-lisp
-;; Assuming Projectile and perspective.el are already installed;
-;; And nameframe.el, nameframe-projectile.el, and nameframe-perspective.el
-;; are all in the load path
+;; Assuming Projectile and perspective.el are already installed
 
 (projectile-global-mode)
 (persp-mode)
+
+;; [Optional, when using manual install]
+;; (require 'nameframe-projectile)
+;; (require 'nameframe-perspective)
+
 (nameframe-projectile-init)
 (nameframe-perspective-init)
 
@@ -73,7 +86,8 @@ use nameframe to its full potential:
 
 ** Caveats
 
-- Only tested on GUI Emacs 24.5 (on OS X, but should work with other GUI versions)
+- Only (thoroughly) tested on GUI Emacs 24.5 on OS X
+  - but seems to work fine on terminal Emacs
 - Does not work with Helm (I personally don't use Helm. Pull-requests welcome.)
 
 ** Demo with Projectile
