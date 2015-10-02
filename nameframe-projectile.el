@@ -1,4 +1,4 @@
-;;; nameframe-projectile --- Nameframe integration with Projectile
+;;; nameframe-projectile.el --- Nameframe integration with Projectile
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe

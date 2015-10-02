@@ -1,4 +1,4 @@
-;;; nameframe-perspective --- Nameframe integration with perspective.el
+;;; nameframe-perspective.el --- Nameframe integration with perspective.el
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe

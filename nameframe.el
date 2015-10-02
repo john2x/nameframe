@@ -1,4 +1,4 @@
-;;; nameframe --- Manage frames by name.
+;;; nameframe.el --- Manage frames by name.
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
