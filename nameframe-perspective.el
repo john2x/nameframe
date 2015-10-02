@@ -22,7 +22,10 @@
   "Switch to a perspective named FRAME-NAME."
   (persp-switch frame-name))
 
-(advice-add 'nameframe-make-frame :after #'nameframe-perspective--persp-switch-after-advice)
+;;;###autoload
+(defun nameframe-perspective-init ()
+  "Advice `nameframe-make-frame' to switch perspective after making a frame."
+  (advice-add 'nameframe-make-frame :after #'nameframe-perspective--persp-switch-after-advice))
 
 (provide 'nameframe-perspective)
 

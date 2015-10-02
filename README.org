@@ -35,16 +35,10 @@ own frames. To enable Projectile integration, add the following line to your
 init file:
 
 #+BEGIN_SRC emacs-lisp
-(require 'nameframe-projectile)
+(nameframe-projectile-init)
 #+END_SRC
 
 This will override Projectile's =C-c p p= mapping to open projects in frames.
-
-To map to a different key instead, replace this line in ~nameframe-projectile.el~:
-
-#+BEGIN_SRC emacs-lisp
-(define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project)
-#+END_SRC
 
 *** Perspective
 
@@ -54,7 +48,7 @@ perspective (and thus have its own list of buffers).
 To enable perspective integration, add the following line to your init file:
 
 #+BEGIN_SRC emacs-lisp
-(require 'nameframe-perspective)
+(nameframe-perspective-init)
 #+END_SRC
 
 *** Recommended setup
@@ -70,10 +64,8 @@ use nameframe to its full potential:
 
 (projectile-global-mode)
 (persp-mode)
-
-(require 'nameframe)
-(require 'nameframe-projectile)
-(require 'nameframe-perspective)
+(nameframe-projectile-init)
+(nameframe-perspective-init)
 
 (global-set-key (kbd "M-P") 'nameframe-switch-frame)
 

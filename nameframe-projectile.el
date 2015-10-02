@@ -47,7 +47,11 @@ unless we're already in that frame."
       (progn (nameframe-make-frame name)
              (projectile-switch-project-by-name project))))))
 
-(define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project)
+;;;###autoload
+(defun nameframe-projectile-init ()
+  "Override Projectile's mapping of `projectile-switch-project' to use `nameframe-projectile-switch-project'."
+  (interactive)
+  (define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project))
 
 (provide 'nameframe-projectile)
 
