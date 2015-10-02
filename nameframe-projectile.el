@@ -25,7 +25,7 @@
 ;; of the target project.
 
 ;; To use this library, put this file in your Emacs load path,
-;; and call (require 'nameframe-projectile).
+;; and call (nameframe-projectile-init).
 
 ;;; Credits:
 
