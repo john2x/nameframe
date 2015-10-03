@@ -10,10 +10,17 @@ create a new frame for the project.
 
 *** MELPA
 
-Nameframe is available on MELPA as [[https://melpa.org/#/nameframe][~nameframe~]].
+Nameframe is available on MELPA as [[https://melpa.org/#/nameframe][nameframe]].
 
 #+BEGIN_SRC text
 M-x package-install RET nameframe RET
+#+END_SRC
+
+To install Projectile and/or perspective.el integration:
+#+BEGIN_SRC text
+M-x package-install RET nameframe-projectile RET
+
+M-x package-install RET nameframe-perspective RET
 #+END_SRC
 
 *** Manual install
@@ -21,7 +28,7 @@ M-x package-install RET nameframe RET
 Copy ~nameframe.el~ into your Emacs load path.
 
 Optionally, copy ~nameframe-projectile.el~ and ~nameframe-perspective.el~
-into your load path as well. See **Usage** section below for details.
+into your load path as well. See *Usage* section below for details.
 
 ** Usage
 
