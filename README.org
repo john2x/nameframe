@@ -68,6 +68,9 @@ To enable perspective integration, add the following line to your init file:
 (nameframe-perspective-init)
 #+END_SRC
 
+With perspective integration enabled, calling ~nameframe-create-frame~ will now
+create a perspective.
+
 *** Recommended setup
 
 Although the Projectile and ~perspective.el~ integrations are optional, nameframe
@@ -90,6 +93,9 @@ use nameframe to its full potential:
 (global-set-key (kbd "M-P") 'nameframe-switch-frame)
 
 #+END_SRC
+
+With this setup, switching to a project will open it in its own dedicated
+frame with isolated buffers.
 
 ** Caveats
 
