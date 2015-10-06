@@ -10,18 +10,9 @@ create a new frame for the project.
 
 *** MELPA
 
-Nameframe is available on MELPA as [[https://melpa.org/#/nameframe][nameframe]].
+Nameframe will be available on MELPA Soon™.
 
-#+BEGIN_SRC text
-M-x package-install RET nameframe RET
-#+END_SRC
-
-To install Projectile and/or perspective.el integration:
-#+BEGIN_SRC text
-M-x package-install RET nameframe-projectile RET
-
-M-x package-install RET nameframe-perspective RET
-#+END_SRC
+For the meantime, please follow the manual install steps below.
 
 *** Manual install
 
