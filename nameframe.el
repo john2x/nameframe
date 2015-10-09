@@ -2,7 +2,7 @@
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
-;; Version: 0.2.0-beta
+;; Version: 0.2.1-beta
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -47,6 +47,15 @@ If FRAME-ALIST is non-nil, then it is used instead of calling
 `nameframe-frame-alist'."
   (let ((frame-alist (or frame-alist (nameframe-frame-alist))))
     (cdr (assoc frame-name frame-alist))))
+
+(defmacro nameframe-with-frame (frame-name &rest body)
+  "Create or switch to a frame named FRAME-NAME and execute BODY.
+BODY is only executed iff a new frame is created."
+  `(let ((frame (nameframe-get-frame ,frame-name)))
+     (if (not frame)
+         (let ((frame (nameframe-make-frame ,frame-name)))
+           ,@body)
+       (select-frame-set-input-focus frame))))
 
 ;;;###autoload
 (defun nameframe-switch-frame (frame-name)
