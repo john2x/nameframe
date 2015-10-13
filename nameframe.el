@@ -49,7 +49,7 @@ If FRAME-ALIST is non-nil, then it is used instead of calling
     (cdr (assoc frame-name frame-alist))))
 
 (defmacro nameframe-with-frame (frame-name &rest body)
-  "Create or switch to a frame named FRAME-NAME and execute BODY.
+  "Create and/or switch to a frame named FRAME-NAME and execute BODY.
 BODY is only executed iff a new frame is created."
   `(let ((frame (nameframe-get-frame ,frame-name)))
      (if (not frame)
