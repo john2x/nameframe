@@ -31,14 +31,26 @@
 (require 'nameframe)
 (require 'perspective)
 
-(defun nameframe-perspective--persp-switch-after-advice (frame-name)
-  "Switch to a perspective named FRAME-NAME."
-  (persp-switch frame-name))
-
 ;;;###autoload
-(defun nameframe-perspective-init ()
-  "Advice `nameframe-make-frame' to switch perspective after making a frame."
-  (advice-add 'nameframe-make-frame :after #'nameframe-perspective--persp-switch-after-advice))
+(define-minor-mode nameframe-perspective-mode
+  "Global minor mode that switches perspective when creating frames.
+With `nameframe-perspective-mode' enabled, creating frames with
+`nameframe-make-frame' will automatically switch to a perspective
+with that frame's name."
+  :init-value nil
+  :lighter "nf-persp"
+  :global t
+  :group 'nameframe
+  :require 'nameframe-perspective
+  (cond
+   (nameframe-perspective-mode
+    (add-hook 'nameframe-make-frame-hook #'nameframe-perspective--make-frame-persp-switch-hook t))
+   (t
+    (remove-hook 'nameframe-make-frame-hook #'nameframe-perspective--make-frame-persp-switch-hook))))
+
+(defun nameframe-perspective--make-frame-persp-switch-hook (frame)
+  "Used as a hook function to switch perspective based on FRAME's name."
+  (persp-switch (nameframe--get-frame-name frame)))
 
 (provide 'nameframe-perspective)
 

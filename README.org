@@ -55,8 +55,7 @@ perspective (and thus have its own list of buffers).
 To enable perspective integration, add the following line to your init file:
 
 #+BEGIN_SRC emacs-lisp
-;; If using manual install, (require 'nameframe-perspective)
-(nameframe-perspective-init)
+(nameframe-perspective-mode t)
 #+END_SRC
 
 With perspective integration enabled, calling ~nameframe-create-frame~ will now
@@ -74,12 +73,8 @@ use nameframe to its full potential:
 (projectile-global-mode)
 (persp-mode)
 
-;; [Optional, when using manual install]
-;; (require 'nameframe-projectile)
-;; (require 'nameframe-perspective)
-
 (nameframe-projectile-init)
-(nameframe-perspective-init)
+(nameframe-perspective-mode)
 
 (global-set-key (kbd "M-P") 'nameframe-switch-frame)
 

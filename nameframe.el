@@ -27,13 +27,19 @@
 
 ;;; Code:
 
+(defgroup nameframe nil
+  "Manage frames by name."
+  :group 'tools
+  :group 'convenience)
+
 (defun nameframe-frame-alist ()
   "Return an alist of named frames."
   (nameframe--build-frames-alist-from-frame-list (frame-list)))
 
 (defun nameframe-make-frame (frame-name)
   "Make a new frame with name FRAME-NAME."
-  (make-frame `((name . ,frame-name))))
+  (let ((frame (make-frame `((name . ,frame-name)))))
+    (run-hook-with-args 'nameframe-make-frame-hook frame)))
 
 (defun nameframe-frame-exists-p (frame-name &optional frame-alist)
   "Check if a frame with FRAME-NAME exists.
@@ -84,9 +90,19 @@ BODY is only executed iff a new frame is created."
             (switch-to-buffer (get-buffer buffer-name))))
       (select-frame-set-input-focus frame))))
 
+(defun nameframe--get-frame-name (frame)
+  "Helper function to extract the name of a FRAME."
+  (cdr (assq 'name (frame-parameters frame))))
+
 (defun nameframe--build-frames-alist-from-frame-list (frame-list)
   "Return an alist of name-frame pairs from a FRAME-LIST (i.e. returned value of the `frame-list' function)."
-  (mapcar (lambda (f) `(,(cdr (assq 'name (frame-parameters f))) . ,f)) frame-list))
+  (mapcar (lambda (f) `(,(nameframe--get-frame-name f) . ,f)) frame-list))
+
+(defcustom nameframe-make-frame-hook nil
+  "Hooks run when a frame is created.
+The created frame is passed as an argument to the hook functions."
+  :group 'nameframe
+  :type 'hook)
 
 (provide 'nameframe)
 
