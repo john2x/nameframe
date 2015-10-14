@@ -25,14 +25,10 @@ into your load path as well. See *Usage* section below for details.
 
 *** Vanilla
 
-- ~nameframe-switch-frame~ - Interactive function to switch between existing frames by name.
-You may want to bind this to a key. e.g.
-
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-P") 'nameframe-switch-frame)
-#+END_SRC
-
-- ~nameframe-create-frame~ - Interactive function to create a new frame.
+| symbol                   | description                                                      |
+|--------------------------+------------------------------------------------------------------|
+| ~nameframe-switch-frame~ | (interactive) function to switch between existing frames by name |
+| ~nameframe-create-frame~ | (interactive) function to create a new frame                     |
 
 *** Projectile
 
@@ -41,7 +37,7 @@ own frames. To enable Projectile integration, add the following line to your
 init file:
 
 #+BEGIN_SRC emacs-lisp
-(nameframe-projectile-mode)
+(nameframe-projectile-mode t)
 #+END_SRC
 
 This will override Projectile's ~projectile-switch-project~ mapping (mapped to =C-c p p= by default) to open projects in frames.
