@@ -10,7 +10,7 @@ create a new frame for the project.
 
 *** MELPA
 
-Nameframe will be available on MELPA Soon™.
+Nameframe will be available on MELPA Soon™. (See issue #4)
 
 For the meantime, please follow the manual install steps below.
 
@@ -41,11 +41,10 @@ own frames. To enable Projectile integration, add the following line to your
 init file:
 
 #+BEGIN_SRC emacs-lisp
-;; If using manual install, (require 'nameframe-projectile)
-(nameframe-projectile-init)
+(nameframe-projectile-mode)
 #+END_SRC
 
-This will override Projectile's =C-c p p= mapping to open projects in frames.
+This will override Projectile's ~projectile-switch-project~ mapping (mapped to =C-c p p= by default) to open projects in frames.
 
 *** Perspective
 
@@ -73,9 +72,11 @@ use nameframe to its full potential:
 (projectile-global-mode)
 (persp-mode)
 
-(nameframe-projectile-init)
-(nameframe-perspective-mode)
+(nameframe-projectile-mode t)
+(nameframe-perspective-mode t)
 
+;; shortcut to switch between existing frames by name
+;; specify your own key (or use your OS's window switching)
 (global-set-key (kbd "M-P") 'nameframe-switch-frame)
 
 #+END_SRC

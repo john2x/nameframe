@@ -38,7 +38,7 @@ With `nameframe-perspective-mode' enabled, creating frames with
 `nameframe-make-frame' will automatically switch to a perspective
 with that frame's name."
   :init-value nil
-  :lighter "nf-persp"
+  :lighter nil
   :global t
   :group 'nameframe
   :require 'nameframe-perspective

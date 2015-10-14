@@ -38,6 +38,19 @@
 (require 'projectile)
 
 ;;;###autoload
+(define-minor-mode nameframe-projectile-mode
+  "Global minor mode that creates/switches to a frame when switching projects."
+  :init-value nil
+  :lighter nil
+  :global t
+  :group 'nameframe
+  :require 'nameframe-projectile
+  (cond
+   (nameframe-projectile-mode
+    (define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project))
+   (t
+    (define-key projectile-mode-map [remap projectile-switch-project] nil))))
+
 (defun nameframe-projectile-switch-project (project)
   "Switch to a projectile PROJECT or frame we have visited before.
 If the frame of corresponding project does not exist, this
@@ -59,11 +72,6 @@ unless we're already in that frame."
      ((not frame)
       (progn (nameframe-make-frame name)
              (projectile-switch-project-by-name project))))))
-
-;;;###autoload
-(defun nameframe-projectile-init ()
-  "Override Projectile's mapping of `projectile-switch-project' to use `nameframe-projectile-switch-project'."
-  (define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project))
 
 (provide 'nameframe-projectile)
 
