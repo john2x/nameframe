@@ -2,8 +2,8 @@
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
-;; Version: 0.3.0-beta
-;; Package-Requires: ((nameframe "0.3.0-beta") (projectile "0.13.0"))
+;; Version: 0.4.0-beta
+;; Package-Requires: ((nameframe "0.4.0-beta") (projectile "0.13.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -47,31 +47,23 @@
   :require 'nameframe-projectile
   (cond
    (nameframe-projectile-mode
-    (define-key projectile-mode-map [remap projectile-switch-project] 'nameframe-projectile-switch-project))
+    (add-hook 'projectile-before-switch-project-hook #'nameframe-projectile--before-switch-project-hook))
    (t
-    (define-key projectile-mode-map [remap projectile-switch-project] nil))))
+    (remove-hook 'projectile-before-switch-project-hook #'nameframe-projectile--before-switch-project-hook))))
 
-(defun nameframe-projectile-switch-project (project)
-  "Switch to a projectile PROJECT or frame we have visited before.
-If the frame of corresponding project does not exist, this
-function will call `nameframe-make-frame' to create one and switch to
-that before `projectile-switch-project' invokes `projectile-switch-project-action'.
-Otherwise, this function will switch to an existing frame of the project
-unless we're already in that frame."
-  (interactive (list (projectile-completing-read "Switch to project: "
-                                                 (projectile-relevant-known-projects))))
-  (let* ((name (file-name-nondirectory (directory-file-name project)))
+(defun nameframe-projectile--before-switch-project-hook ()
+  "Hook to create/switch to a project's frame."
+  (let* ((project-to-switch default-directory)
+         (name (file-name-nondirectory (directory-file-name project-to-switch)))
          (curr-frame (selected-frame))
          (frame-alist (nameframe-frame-alist))
          (frame (nameframe-get-frame name frame-alist)))
     (cond
-     ;; project-specific frame already exists
+     ;; project frame already exists
      ((and frame (not (equal frame curr-frame)))
       (select-frame-set-input-focus frame))
-     ;; project-specific frame doesn't exist
      ((not frame)
-      (progn (nameframe-make-frame name)
-             (projectile-switch-project-by-name project))))))
+      (nameframe-make-frame name)))))
 
 (provide 'nameframe-projectile)
 
