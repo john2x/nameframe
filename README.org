@@ -2,7 +2,7 @@
 
 Nameframe provides utility functions to manage frames by their names.
 
-It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]] and/or perspective.el. When opening a Projectile
+It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]] and/or [[https://github.com/nex3/perspective-el][perspective.el]]. When opening a Projectile
 project, it will either switch to an existing frame of the project, or
 create a new frame for the project.
 
@@ -10,9 +10,12 @@ create a new frame for the project.
 
 *** MELPA
 
-Nameframe will be available on MELPA Soon™. (See issue #4)
+Nameframe is now available on [[http://melpa.org/#/?q=nameframe][MELPA]]. The Projectile and perspective.el integrations
+are distributed separately (and thus will need to be installed separately).
 
-For the meantime, please follow the manual install steps below.
+- ~M-x package-install~ =RET= ~nameframe~ =RET=
+- ~M-x package-install~ =RET= ~nameframe-projectile~ =RET=
+- ~M-x package-install~ =RET= ~nameframe-perspective~ =RET=
 
 *** Manual install
 
@@ -40,7 +43,7 @@ init file:
 (nameframe-projectile-mode t)
 #+END_SRC
 
-This will override Projectile's ~projectile-switch-project~ mapping (mapped to =C-c p p= by default) to open projects in frames.
+With Projectile integration enabled, a hook is added to create/switch to a project's frame when switching projects.
 
 *** Perspective
 
@@ -71,8 +74,8 @@ use nameframe to its full potential:
 (nameframe-projectile-mode t)
 (nameframe-perspective-mode t)
 
-;; shortcut to switch between existing frames by name
-;; specify your own key (or use your OS's window switching)
+;; If your OS can't switch between applications windows by default *cough* OS X *cough*
+;; you can have a shortcut to switch between existing frames by name
 (global-set-key (kbd "M-P") 'nameframe-switch-frame)
 
 #+END_SRC

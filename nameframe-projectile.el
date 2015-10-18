@@ -25,12 +25,7 @@
 ;; of the target project.
 
 ;; To use this library, put this file in your Emacs load path,
-;; and call (nameframe-projectile-init).
-
-;;; Credits:
-
-;; The `nameframe-projectile-switch-project' function was copied from
-;; `persp-projectile.el' (https://github.com/bbatsov/projectile/blob/master/persp-projectile.el)
+;; and call (nameframe-projectile-mode t).
 
 ;;; Code:
 
