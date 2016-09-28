@@ -2,8 +2,8 @@
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
-;; Version: 0.4.0-beta
-;; Package-Requires: ((nameframe "0.4.0-beta") (projectile "0.13.0"))
+;; Version: 0.4.1-beta
+;; Package-Requires: ((nameframe "0.4.1-beta") (projectile "0.13.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -42,13 +42,14 @@
   :require 'nameframe-projectile
   (cond
    (nameframe-projectile-mode
+    (nameframe-projectile--add-advice-around-switch-project-by-name)
     (add-hook 'projectile-before-switch-project-hook #'nameframe-projectile--before-switch-project-hook))
    (t
     (remove-hook 'projectile-before-switch-project-hook #'nameframe-projectile--before-switch-project-hook))))
 
 (defun nameframe-projectile--before-switch-project-hook ()
   "Hook to create/switch to a project's frame."
-  (let* ((project-to-switch default-directory)
+  (let* ((project-to-switch nameframe-projectile--project-to-switch)  ;; set by advise
          (name (file-name-nondirectory (directory-file-name project-to-switch)))
          (curr-frame (selected-frame))
          (frame-alist (nameframe-frame-alist))
@@ -59,6 +60,16 @@
       (select-frame-set-input-focus frame))
      ((not frame)
       (nameframe-make-frame name)))))
+
+(defun nameframe-projectile-switch-project-by-name (projectile-switch-project-by-name &rest args)
+  "Workaround for https://github.com/bbatsov/projectile/issues/1056
+Set the variable nameframe-projectile--project-to-switch to the target project so our hooks can use it."
+  (let* ((nameframe-projectile--project-to-switch (car args)))
+    (apply projectile-switch-project-by-name args)))
+
+(defun nameframe-projectile--add-advice-around-switch-project-by-name ()
+  "Workaround for https://github.com/bbatsov/projectile/issues/1056"
+  (advice-add #'projectile-switch-project-by-name :around #'nameframe-projectile-switch-project-by-name))
 
 (provide 'nameframe-projectile)
 

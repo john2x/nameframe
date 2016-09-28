@@ -2,7 +2,7 @@
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
-;; Version: 0.4.0-beta
+;; Version: 0.4.1-beta
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -73,6 +73,7 @@ BODY is only executed iff a new frame is created."
   (let* ((frame-alist (nameframe-frame-alist))
          (frame (nameframe-get-frame frame-name frame-alist)))
     (when frame
+      (message "Switched to frame %s" frame-name)
       (select-frame-set-input-focus frame))))
 
 ;;;###autoload
