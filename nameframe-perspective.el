@@ -2,7 +2,7 @@
 
 ;; Author: John Del Rosario <john2x@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
-;; Version: 0.4.1-beta
+;; Version: 0.4.2-beta
 ;; Package-Requires: ((nameframe "0.4.1-beta") (perspective "1.12"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -50,7 +50,9 @@ with that frame's name."
 
 (defun nameframe-perspective--make-frame-persp-switch-hook (frame)
   "Used as a hook function to switch perspective based on FRAME's name."
-  (persp-switch (nameframe--get-frame-name frame)))
+  (persp-switch (nameframe--get-frame-name frame))
+  ;; kill the default 'main' perspective
+  (persp-kill "main"))
 
 (provide 'nameframe-perspective)
 
