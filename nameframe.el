@@ -39,6 +39,7 @@
 (defun nameframe-make-frame (frame-name)
   "Make a new frame with name FRAME-NAME."
   (let ((frame (make-frame `((name . ,frame-name)))))
+    (select-frame-set-input-focus frame)
     (run-hook-with-args 'nameframe-make-frame-hook frame)))
 
 (defun nameframe-frame-exists-p (frame-name &optional frame-alist)
