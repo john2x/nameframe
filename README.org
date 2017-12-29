@@ -2,7 +2,7 @@
 
 Nameframe provides utility functions to manage frames by their names.
 
-It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]] and/or [[https://github.com/nex3/perspective-el][perspective.el]]. When opening a Projectile
+It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]] and/or [[https://github.com/seudut/perspeen][perspeen.el]]. When opening a Projectile
 project, it will either switch to an existing frame of the project, or
 create a new frame for the project.
 
@@ -10,18 +10,18 @@ create a new frame for the project.
 
 *** MELPA
 
-Nameframe is now available on [[http://melpa.org/#/?q=nameframe][MELPA]]. The Projectile and perspective.el integrations
+Nameframe is now available on [[http://melpa.org/#/?q=nameframe][MELPA]]. The Projectile and perspeen.el integrations
 are distributed separately (and thus will need to be installed separately).
 
 - ~M-x package-install~ =RET= ~nameframe~ =RET=
 - ~M-x package-install~ =RET= ~nameframe-projectile~ =RET=
-- ~M-x package-install~ =RET= ~nameframe-perspective~ =RET=
+- ~M-x package-install~ =RET= ~nameframe-perspeen~ =RET=
 
 *** Manual install
 
 Copy ~nameframe.el~ into your Emacs load path.
 
-Optionally, copy ~nameframe-projectile.el~ and ~nameframe-perspective.el~
+Optionally, copy ~nameframe-projectile.el~ and ~nameframe-perspeen.el~
 into your load path as well. See *Usage* section below for details.
 
 ** Usage
@@ -45,34 +45,34 @@ init file:
 
 With Projectile integration enabled, a hook is added to create/switch to a project's frame when switching projects.
 
-*** Perspective
+*** Perspeen
 
-Nameframe also provides ~perspective.el~ integration, so each frame has its own
-perspective (and thus have its own list of buffers).
+Nameframe also provides ~perspeen.el~ integration, so each frame has its own
+workspace (and thus have its own list of buffers).
 
-To enable perspective integration, add the following line to your init file:
+To enable perspeen integration, add the following line to your init file:
 
 #+BEGIN_SRC emacs-lisp
-(nameframe-perspective-mode t)
+(nameframe-perspeen-mode t)
 #+END_SRC
 
-With perspective integration enabled, calling ~nameframe-create-frame~ will now
-create a perspective.
+With perspeen integration enabled, calling ~nameframe-create-frame~ will now
+create a workspace.
 
 *** Recommended setup
 
-Although the Projectile and ~perspective.el~ integrations are optional, nameframe
+Although the Projectile and ~perspeen.el~ integrations are optional, nameframe
 really shines when used in conjunction with both packages. Here is a snippet on how to
 use nameframe to its full potential:
 
 #+BEGIN_SRC emacs-lisp
-;; Assuming Projectile and perspective.el are already installed
+;; Assuming Projectile and perspeen.el are already installed
 
 (projectile-global-mode)
 (persp-mode)
 
 (nameframe-projectile-mode t)
-(nameframe-perspective-mode t)
+(nameframe-perspeen-mode t)
 
 ;; If your OS can't switch between applications windows by default *cough* OS X *cough*
 ;; you can have a shortcut to switch between existing frames by name
