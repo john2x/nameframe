@@ -3,8 +3,8 @@
 ;; Author: John Del Rosario <john2x@gmail.com>, surya <surya46584@gmail.com>
 ;; URL: https://github.com/john2x/nameframe
 ;; Package-Version: 20160927.2103
-;; Version: 0.4.1-beta
-;; Package-Requires: ((nameframe "0.4.1-beta") (eyebrowse "1.12"))
+;; Version: 0.5.0-beta
+;; Package-Requires: ((nameframe "0.5.0-beta") (eyebrowse "1.12"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
