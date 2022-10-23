@@ -2,26 +2,27 @@
 
 Nameframe provides utility functions to manage frames by their names.
 
-It's primary goal is to be used with [[https://github.com/bbatsov/projectile][Projectile]] and/or [[https://github.com/nex3/perspective-el][perspective.el]]. When opening a Projectile
-project, it will either switch to an existing frame of the project, or
-create a new frame for the project.
+It's primary goal is to be used with project.el (or Projectile) and/or
+[[https://github.com/nex3/perspective-el][perspective.el]]. When opening a project, it will either switch to an
+existing frame of the project, or create a new frame for the project.
 
 ** Installation
 
 *** MELPA
 
-Nameframe is now available on [[http://melpa.org/#/?q=nameframe][MELPA]]. The Projectile and perspective.el integrations
-are distributed separately (and thus will need to be installed separately).
+Nameframe is now available on [[http://melpa.org/#/?q=nameframe][MELPA]]. The project.el and perspective.el
+integrations are distributed separately (and thus will need to be
+installed separately).
 
 - ~M-x package-install~ =RET= ~nameframe~ =RET=
-- ~M-x package-install~ =RET= ~nameframe-projectile~ =RET=
+- ~M-x package-install~ =RET= ~nameframe-project~ =RET=
 - ~M-x package-install~ =RET= ~nameframe-perspective~ =RET=
 
 *** Manual install
 
 Copy ~nameframe.el~ into your Emacs load path.
 
-Optionally, copy ~nameframe-projectile.el~ and ~nameframe-perspective.el~
+Optionally, copy ~nameframe-project.el~ and ~nameframe-perspective.el~
 into your load path as well. See *Usage* section below for details.
 
 ** Usage
@@ -32,6 +33,20 @@ into your load path as well. See *Usage* section below for details.
 |--------------------------+------------------------------------------------------------------|
 | ~nameframe-switch-frame~ | (interactive) function to switch between existing frames by name |
 | ~nameframe-create-frame~ | (interactive) function to create a new frame                     |
+
+*** Project.el
+
+Nameframe provides project.el integration to open projects in their
+own frames. To enable project.el integration, add the following line to your
+init file:
+
+#+BEGIN_SRC emacs-lisp
+(nameframe-project-mode t)
+#+END_SRC
+
+With project.el integration enabled, an =advice= is added to
+create/switch to a project's frame when switching projects with
+=project-switch-project=.
 
 *** Projectile
 
@@ -61,17 +76,16 @@ create a perspective.
 
 *** Recommended setup
 
-Although the Projectile and ~perspective.el~ integrations are optional, nameframe
+Although the ~project.el~ and ~perspective.el~ integrations are optional, nameframe
 really shines when used in conjunction with both packages. Here is a snippet on how to
 use nameframe to its full potential:
 
 #+BEGIN_SRC emacs-lisp
-;; Assuming Projectile and perspective.el are already installed
+;; Assuming project.el and perspective.el are already installed
 
-(projectile-global-mode)
 (persp-mode)
 
-(nameframe-projectile-mode t)
+(nameframe-project-mode t)
 (nameframe-perspective-mode t)
 
 ;; If your OS can't switch between applications windows by default *cough* OS X *cough*
